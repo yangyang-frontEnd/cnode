@@ -19,9 +19,11 @@ function Nav() {
                             to={item.url}
                             exact={item.exact}
                             activeClassName={"active"}
+                            /*
+                            // 由于设置了精准匹配，需要自定义是否选中规则，否则匹配不上
                             isActive={() => {
                                 return url[1] === pathname[1] && pathname[2] > 0
-                            }}
+                            }}*/
                         >
                             {item.txt}
                         </NavLink>

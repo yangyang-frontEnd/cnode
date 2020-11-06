@@ -29,10 +29,8 @@ const router = [
                 __proto__: Object
             * */
             pathname = pathname.split('/')
-            if (types.includes(pathname[1])) {
-                if (pathname[2] > 0) {
-                    return <Inner/>
-                }
+            if (types.includes(pathname[1]) && pathname[2] > 0) {
+                return <Inner/>
             }
             return <Page404/>
         }
@@ -51,7 +49,7 @@ const router = [
     },
     {
         path: "",
-        exact: true,
+        exact: false,
         render() {
             return <Page404/>
         }
