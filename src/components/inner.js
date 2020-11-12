@@ -1,28 +1,22 @@
 import React, { Fragment, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import List from "./list";
 import FooterNav from "./footerNav";
-import getData from "../http";
-import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toLoad } from "../store/action";
 
 function Inner() {
   let { type, page } = useParams();
+
   let disptach = useDispatch();
+
   let load = useSelector((state) => {
     return state.load;
   });
 
   useEffect(() => {
-    disptach({
-      type: "load_start",
-    });
-
-    getData(type, page).then((res) => {
-      console.log("数据请求成功", res.data);
-      disptach({
-        type: "load_end",
-        data: res.data.data,
-      });
+    disptach((disptach) => {
+      toLoad(disptach, type, page);
     });
   }, [type, page]);
 
