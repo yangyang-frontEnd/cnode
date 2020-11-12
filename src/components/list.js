@@ -1,6 +1,9 @@
 import React from "react"
-function List(props){
-    let {data} = props
+import {useSelector} from "react-redux"
+function List(){
+    let data = useSelector(state=>{
+        return state.data
+    })
     return (
         <ul>
             {data.map((item,index)=>{
