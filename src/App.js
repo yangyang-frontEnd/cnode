@@ -1,24 +1,22 @@
 import React from "react"
-import Nav from "./components/nav";
-import {Switch, Route} from "react-router-dom"
-import router from "./router/router";
+import Nav from './component/nav'
+import {Route, Switch} from "react-router-dom"
+import router from "./router/router"
 
 function App() {
     return (
         <div className="wrap">
-            <Nav/>
-            <Switch>
-                {
-                    router.map((item, index) => {
-                        return (<Route
-                            key={index}
-                            path={item.path}
-                            exact={item.exact}
-                            render={item.render}
-                        />)
-                    })
-                }
-            </Switch>
+            <Nav></Nav>
+<Switch>
+    {
+        router.map((item,index)=>{
+            return <Route path={item.path} key={index} exact={item.exact} render={(props)=>{
+                // return  item.render({info,...props})
+                return item.render(props)
+            }}></Route>
+        })
+    }
+</Switch>
         </div>
     )
 }
